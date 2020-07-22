@@ -30,23 +30,23 @@ void ds1307_init()
 
 void ds1307_clock_write(char _hour, char _minute, char _second)
 {
-	i2c_start(Device_Write_address);	// Start i2c communication with RTC 
-	i2c_write(0);					          	// Write 0 address for second 
-	i2c_write(_second);					      // Write second on 00 location
-	i2c_write(_minute);				      	// Write minute on 01 location
-	i2c_write(_hour);				        	// Write hour on 02 location 
-	i2c_stop();					          		// Stop i2c communication 
+	i2c_start(Device_Write_address);		// Start i2c communication with RTC 
+	i2c_write(0);				  	// Write 0 address for second 
+	i2c_write(_second);				// Write second on 00 location
+	i2c_write(_minute);	  		 	// Write minute on 01 location
+	i2c_write(_hour);		        	// Write hour on 02 location 
+	i2c_stop();		          		// Stop i2c communication 
 }
 
 void ds1307_calendar_write(char _day, char _date, char _month, char _year)
 {
 	i2c_start(Device_Write_address);	// Start i2c communication with RTC 
-	i2c_write(3);						          // Write 3 address for day 
-	i2c_write(_day);				        	// Write day on 03 location
-	i2c_write(_date);				        	// Write date on 04 location 
-	i2c_write(_month);      					// Write month on 05 location 
-	i2c_write(_year);		        			// Write year on 06 location 
-	i2c_stop();				          			// Stop i2c communication 
+	i2c_write(3);			        // Write 3 address for day 
+	i2c_write(_day);		       	// Write day on 03 location
+	i2c_write(_date);		       	// Write date on 04 location 
+	i2c_write(_month);      		// Write month on 05 location 
+	i2c_write(_year);		       	// Write year on 06 location 
+	i2c_stop();	    			// Stop i2c communication 
 }
 
 void ds1307_read_clock(char read_clock_address)
@@ -58,7 +58,7 @@ void ds1307_read_clock(char read_clock_address)
 	second = i2c_read_ack();			// Read second 
 	minute = i2c_read_ack();			// Read minute  
 	hour = i2c_read_nack();				// Read hour and stop reading  
-	i2c_stop();						      	// Stop i2c communication  
+	i2c_stop();				      	// Stop i2c communication  
 }
 
 void ds1307_read_calendar(char read_calendar_address)
@@ -67,11 +67,11 @@ void ds1307_read_calendar(char read_calendar_address)
 	i2c_write(read_calendar_address);	//Write address to read from
 	i2c_start(Device_Read_address);		//Repeated start with devices read address
 
-	day = i2c_read_ack();		  // Read day 
-	date = i2c_read_ack();		// Read date 
-	month = i2c_read_ack();		// Read month 
-	year = i2c_read_nack();		// Read the year and stop reading  
-	i2c_stop();					      // Stop i2c communication  
+	day = i2c_read_ack();		 // Read day 
+	date = i2c_read_ack();		 // Read date 
+	month = i2c_read_ack();		 // Read month 
+	year = i2c_read_nack();		 // Read the year and stop reading  
+	i2c_stop();			 // Stop i2c communication  
 }
 
 //The variables x and y represent the coordinates of the 1st digit to be displayed
